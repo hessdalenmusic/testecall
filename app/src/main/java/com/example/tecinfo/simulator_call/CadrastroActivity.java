@@ -24,7 +24,6 @@ public class CadrastroActivity extends AppCompatActivity {
 
         meuDados = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
 
-        EditText nome = findViewById(R.id.ent_nomecad);
         final EditText novoEmail = findViewById(R.id.ent_emailcad);
         final EditText senha = findViewById(R.id.ent_senhacad);
         final EditText confimarsenha = findViewById(R.id.ent_senhacad2);

@@ -23,6 +23,8 @@
     <string name="ast">*</string>
     <string name="_0">0</string>
     <string name="hash">#</string>
+    <string name="ligar">#</string>
+
 
 
 </resources>

@@ -57,11 +57,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        registrar.setOnClickListener(new View.OnClickListener() {
+         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,CadrastroActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
