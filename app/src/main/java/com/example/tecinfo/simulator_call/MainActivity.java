@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences meuDados;
     public static final String mypreference = "call";
 
 
@@ -25,15 +26,33 @@ public class MainActivity extends AppCompatActivity {
 
         final Button login = findViewById(R.id.bt_login);
         final Button registrar = findViewById(R.id.bt_registrar);
-        EditText email = findViewById(R.id.ent_email_log);
-        EditText senha = findViewById(R.id.ent_senha_log)
+        final EditText email = findViewById(R.id.ent_email_log);
+        final EditText senha = findViewById(R.id.ent_senha_log);
 
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,CallActivity.class);
-                startActivity(intent);
+                String meuEmail = email.getText().toString();
+                String minhasenha = senha.getText().toString();
+
+                if (meuDados.contains("email")&& meuDados.contains("senha")){
+
+                    if(meuEmail.equals(meuDados.getString("email", ""))
+                            && minhasenha.equals(meuDados.getString("senha", ""))){
+
+                        Intent intent = new Intent(MainActivity.this,CallActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(),
+                                "email ou senha invalido", Toast.LENGTH_LONG).show();
+                    }
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "não existe cadastros", Toast.LENGTH_LONG).show();
+
+                }
+
 
             }
         });

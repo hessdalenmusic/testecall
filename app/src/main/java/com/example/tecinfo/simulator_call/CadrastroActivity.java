@@ -14,6 +14,9 @@ import static com.example.tecinfo.simulator_call.MainActivity.mypreference;
 
 public class CadrastroActivity extends AppCompatActivity {
 
+    SharedPreferences meuDados;
+    public static final String mypreference = "call";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +27,7 @@ public class CadrastroActivity extends AppCompatActivity {
         EditText nome = findViewById(R.id.ent_nomecad);
         final EditText novoEmail = findViewById(R.id.ent_emailcad);
         final EditText senha = findViewById(R.id.ent_senhacad);
-        EditText confimarsenha = findViewById(R.id.ent_senhacad2);
+        final EditText confimarsenha = findViewById(R.id.ent_senhacad2);
         Button cadastrar = findViewById(R.id.bt_cad_cadastrar);
 
 
@@ -32,13 +35,24 @@ public class CadrastroActivity extends AppCompatActivity {
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    if (ent_senhacad.get().toString().equals(ent_senhacad2.getText().toString())){
+                    if (senha.getText().toString().equals(confimarsenha.getText().toString())){
 
                         SharedPreferences.Editor editor = meuDados.edit();
+                        editor.putString("email", novoEmail.getText().toString());
+                        editor.putString("senha", senha.getText().toString());
+
+                        editor.commit();
+
+                        Toast.makeText(getApplicationContext(),
+                                "dados salvos com sucesso", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(CadrastroActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
 
                     } else {
                         Toast.makeText(getApplicationContext(),
-                                "as senhas não conferem", Toast.LENGTH_LONG);
+                                "as senhas não conferem", Toast.LENGTH_LONG).show();
                     }
             }
         });
