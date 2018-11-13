@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">simulator_call</string>
+
+    <string name="login">login</string>
+    <string name="simulador">Simulador</string>
+
+
+</resources>
