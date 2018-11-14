@@ -1,6 +1,10 @@
 package com.example.tecinfo.simulator_call;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -98,6 +102,19 @@ public class CallActivity extends AppCompatActivity {
                     break;
 
                 case R.id.bt_ligar:
+
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse("tel:"+memoria));
+
+                    if (ActivityCompat.checkSelfPermission(CallActivity.this,
+                            Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions(CallActivity.this,
+                                new String[]{Manifest.permission.CALL_PHONE}, 0);
+
+                    }
+                    startActivity(intent);
+
+
                     break;
 
 
